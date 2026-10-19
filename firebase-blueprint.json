@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile document storing basic account metadata",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated user unique UID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "photoUrl": {
+          "type": "string",
+          "description": "User avatar URL"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account registration timestamp written with FieldValue.serverTimestamp()"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last profile update timestamp written with FieldValue.serverTimestamp()"
+        }
+      },
+      "required": ["userId", "createdAt"]
+    },
+    "SavedAiItem": {
+      "title": "SavedAiItem",
+      "description": "AI tool generation result saved for sync across devices",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Document ID"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID"
+        },
+        "toolId": {
+          "type": "string",
+          "description": "Unique identifier of the AI tool used"
+        },
+        "toolTitle": {
+          "type": "string",
+          "description": "Human-readable Arabic title of the AI tool"
+        },
+        "inputPrompt": {
+          "type": "string",
+          "description": "User input prompt or question"
+        },
+        "outputContent": {
+          "type": "string",
+          "description": "AI generated response text or code"
+        },
+        "isFavorite": {
+          "type": "boolean",
+          "description": "Whether this item is marked as favorite"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp written with FieldValue.serverTimestamp()"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modified timestamp written with FieldValue.serverTimestamp()"
+        }
+      },
+      "required": [
+        "userId",
+        "toolId",
+        "toolTitle",
+        "inputPrompt",
+        "outputContent",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Collection of user account profiles"
+    },
+    "/users/{userId}/saved_items/{itemId}": {
+      "schema": "SavedAiItem",
+      "description": "Per-user subcollection of saved AI generations and favorite results"
+    }
+  }
+}

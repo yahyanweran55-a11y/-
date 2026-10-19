@@ -1,0 +1,6 @@
+{
+  "name": "شامل AI",
+  "description": "منصة ذكية وشاملة تجمع كافة أدوات الذكاء الاصطناعي مجاناً وبدون تسجيل دخول مع واجهة عربية متكاملة وسهلة الاستخدام.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
